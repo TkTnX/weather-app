@@ -1,0 +1,101 @@
+@import url(https://fonts.googleapis.com/css?family=Overpass:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+body {
+  background-color: #d3edff;
+  height: 100vh;
+  font-family: "Overpass", sans-serif;
+  color: #fff;
+  text-shadow: 3px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  margin: 0 auto;
+  padding: 52px 30px 36px;
+  border-radius: 15px;
+  width: 414px;
+  background: linear-gradient(225deg, #47bfdf 0%, #4a91ff 100%);
+  position: relative;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.bg {
+  content: "";
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 381px;
+  object-fit: cover;
+  background-image: url("/bg.png");
+  background-position: center center; /* x y */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+
+  .top__location {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .top__location-img {
+      align-self: baseline;
+    }
+
+    h5 {
+      font-weight: 700;
+      font-size: 24px;
+      text-shadow: -2px 3px 1px 0 rgba(0, 0, 0, 0.1),
+        inset -1px 1px 2px 0 rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+
+.weather-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 66px;
+  height: 100%;
+
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+}
+
+.error {
+  text-align: center;
+  font-size: 32px;
+}
+.error__btn {
+  text-align: center;
+  background-color: #fff;
+  color: #47bfdf;
+  padding: 10px;
+  border-radius: 20px;
+  width: 100%;
+  margin-top: 20px;
+  transition: all 0.1s ease-in;
+
+  &:hover {
+    background-color: #47bfdf;
+    color: #fff;
+  }
+}
