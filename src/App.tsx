@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import WeatherBlock from "./components/weatherBlock/WeatherBlock";
 import "./css/main.css";
 import Search from "./components/search/Search";
+import { weatherTypes } from "./constants";
+import ForecastReport from "./components/forecastReport/ForecastReport";
 
 function App() {
   const [data, setData] = useState({
@@ -18,6 +20,20 @@ function App() {
     location: {
       name: "",
     },
+    forecast: {
+      forecastday: [
+        {
+          date: "",
+          day: {
+            condition: {
+              icon: "",
+              text: "",
+            },
+            avgtemp_c: 0,
+          },
+        },
+      ],
+    },
     error: {
       message: "",
     },
@@ -25,21 +41,21 @@ function App() {
   const [openSearch, setOpenSearch] = useState(false);
   const [inputValue, setInputValue] = useState("New York");
 
+  const API = import.meta.env.VITE_WEATHER_API_KEY;
+  const QUERY = `key=${API}&q=${inputValue}&days=7`;
   useEffect(() => {
     const getWeather = async () => {
       const data = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${
-          import.meta.env.VITE_WEATHER_API_KEY
-        }&q=${inputValue}`
+        `http://api.weatherapi.com/v1/forecast.json?${QUERY}`
       );
 
       const result = await data.json();
       setData(result);
     };
     getWeather();
-  }, [inputValue]);
+  }, [QUERY, inputValue]);
 
-  console.log(data);
+  console.log(data.forecast);
 
   return (
     <div className="App">
@@ -87,12 +103,17 @@ function App() {
 
           <div className="weather-img">
             <img
-              src={data.current.condition.icon}
+              src={
+                weatherTypes.find(
+                  (el) => el.text === data.current.condition.text
+                )?.icon
+              }
               alt={data.current.condition.text}
             />
           </div>
 
           <WeatherBlock weather={data} />
+          <ForecastReport forecast={data.forecast} />
         </div>
       )}
       <div className="bg" />

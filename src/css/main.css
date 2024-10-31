@@ -8,6 +8,24 @@ body {
   text-shadow: 3px 1px 0 rgba(0, 0, 0, 0.1);
 }
 
+.scrollbar::-webkit-scrollbar {
+  width: 6px; /* ширина scrollbar */
+}
+.scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* цвет дорожки */
+  border-radius: 5px; /* закругления плашки */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  width: 6px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #fff; /* цвет плашки */
+  border-radius: 5px; /* закругления плашки */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  width: 6px;
+}
+
 #root {
   height: 100%;
   display: flex;
@@ -22,6 +40,7 @@ body {
   width: 414px;
   background: linear-gradient(225deg, #47bfdf 0%, #4a91ff 100%);
   position: relative;
+  overflow: hidden;
 }
 
 .wrapper {

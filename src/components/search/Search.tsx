@@ -1,6 +1,10 @@
 import { useState } from "react";
 import "./search.css";
-
+import {
+  AddressSuggestions,
+  DaDataAddress,
+  DaDataSuggestion,
+} from "react-dadata";
 const Search = ({
   setOpenSearch,
   setInputValue,
@@ -10,13 +14,26 @@ const Search = ({
   setInputValue: (s: string) => void;
   inputValue: string;
 }) => {
-  const [inpValue, setInpValue] = useState(inputValue);
+  const [inpValue, setInpValue] = useState({
+    value: inputValue,
+  });
+  const [realtimeValue, setRealtimeValue] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (inpValue !== "") {
+    if (inpValue.value !== "") {
       setOpenSearch(false);
-      setInputValue(inpValue);
+      setInputValue(
+        inpValue.value !== inputValue ? inpValue.value : realtimeValue
+      );
+    }
+  };
+
+  const handleChange = (
+    suggestion: DaDataSuggestion<DaDataAddress> | undefined
+  ) => {
+    if (suggestion) {
+      setInpValue({ value: String(suggestion.data.city) });
     }
   };
 
@@ -26,11 +43,23 @@ const Search = ({
         <img src="/arrow-left.svg" alt="" />
       </button>
       <form className="search__form">
-        <input
-          value={inpValue}
-          onChange={(e) => setInpValue(e.target.value)}
-          type="text"
-          placeholder="Search here"
+        <AddressSuggestions
+          token={import.meta.env.VITE_DADATA_API_KEY}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
+          value={inpValue.value}
+          onChange={handleChange}
+          filterFromBound="city"
+          filterToBound="city"
+          inputProps={{
+            placeholder: "Search here",
+            style: {
+              width: "100%",
+            },
+            value: realtimeValue,
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+              setRealtimeValue(e.target.value),
+          }}
         />
 
         <button onClick={handleSubmit} className="search__btn">
