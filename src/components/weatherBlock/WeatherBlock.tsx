@@ -1,3 +1,4 @@
+import {  getDate } from "../../libs/getDate";
 import "./weatherBlock.css";
 
 type weatherType = {
@@ -16,10 +17,7 @@ type weatherType = {
 };
 
 const WeatherBlock = ({ weather }: { weather: weatherType }) => {
-  const today = new Date().toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "long",
-  });
+  const today = getDate(new Date());
   return (
     <div className="weatherBlock">
       <p className="weatherBlock__date">Today, {today}</p>

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import WeatherBlock from "./components/weatherBlock/WeatherBlock";
 import "./css/main.css";
 import Search from "./components/search/Search";
-import { weatherTypes } from "./constants";
 import ForecastReport from "./components/forecastReport/ForecastReport";
+import { findIcon } from "./libs/findIcon";
 
 function App() {
   const [data, setData] = useState({
@@ -55,8 +55,6 @@ function App() {
     getWeather();
   }, [QUERY, inputValue]);
 
-  console.log(data.forecast);
-
   return (
     <div className="App">
       {data.error && data.error.message ? (
@@ -103,11 +101,7 @@ function App() {
 
           <div className="weather-img">
             <img
-              src={
-                weatherTypes.find(
-                  (el) => el.text === data.current.condition.text
-                )?.icon
-              }
+              src={findIcon(data.current.condition.text)}
               alt={data.current.condition.text}
             />
           </div>

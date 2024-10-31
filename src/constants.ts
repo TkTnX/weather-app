@@ -20,6 +20,22 @@ export const weatherTypes = [
     icon: "/weathers/cloudy.png",
   },
   {
+    text: "Patchy moderate snow",
+    icon: "/weathers/snow-light.png",
+  },
+  {
+    text: "Light freezing rain",
+    icon: "/weathers/freezing-rain.png",
+  },
+  {
+    text: "Moderate snow",
+    icon: "/weathers/snow-light.png",
+  },
+  {
+    text: "Heavy snow",
+    icon: "/weathers/heavy-snow.png",
+  },
+  {
     text: "Fog",
     icon: "/weathers/cloudy.png",
   },

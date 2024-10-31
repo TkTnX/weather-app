@@ -18,7 +18,7 @@ export interface Iforecast {
 }
 
 const ForecastReport = ({ forecast }: { forecast: Iforecast }) => {
-  console.log(forecast);
+  
   const [open, setOpen] = useState(false);
   return (
     <div className="forecastReport">
