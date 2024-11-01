@@ -1,0 +1,41 @@
+.forecastReportWeek {
+  margin-top: 50px;
+}
+
+.forecastReportInfo__data {
+  max-height: 312px;
+  overflow-y: auto;
+  margin-top: 22px;
+  padding-right: 40px;
+  display: grid;
+  gap: 7px;
+}
+
+.forecastReportInfo__data-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+
+  h6 {
+    font-weight: 700;
+    flex: 1;
+  }
+
+  p {
+    font-weight: 400;
+    flex: 1;
+    text-align: right;
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
+  }
+}
+.forecastReportInfo__data-item-img {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

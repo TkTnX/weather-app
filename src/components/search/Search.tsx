@@ -5,14 +5,19 @@ import {
   DaDataAddress,
   DaDataSuggestion,
 } from "react-dadata";
+import RecentSearch from "../recentSearch/RecentSearch";
 const Search = ({
   setOpenSearch,
   setInputValue,
   inputValue,
+  setRecentSearch,
+  recentSearch,
 }: {
   setOpenSearch: (b: boolean) => void;
   setInputValue: (s: string) => void;
   inputValue: string;
+  setRecentSearch: (s: string[]) => void;
+  recentSearch: string[];
 }) => {
   const [inpValue, setInpValue] = useState({
     value: inputValue,
@@ -23,9 +28,14 @@ const Search = ({
     e.preventDefault();
     if (inpValue.value !== "") {
       setOpenSearch(false);
+
       setInputValue(
         inpValue.value !== inputValue ? inpValue.value : realtimeValue
       );
+
+      if (!recentSearch.includes(inpValue.value)) {
+        setRecentSearch([inpValue.value, ...recentSearch]);
+      }
     }
   };
 
@@ -36,6 +46,8 @@ const Search = ({
       setInpValue({ value: String(suggestion.data.city) });
     }
   };
+
+ 
 
   return (
     <div className="search">
@@ -65,6 +77,13 @@ const Search = ({
         <button onClick={handleSubmit} className="search__btn">
           <img width={24} height={24} src="/search.svg" alt="" />
         </button>
+        {recentSearch.length > 0 && (
+          <RecentSearch
+            setInputValue={setInputValue}
+            list={recentSearch}
+            setOpenSearch={setOpenSearch}
+          />
+        )}
       </form>
     </div>
   );

@@ -1,4 +1,4 @@
-import {  getDate } from "../../libs/getDate";
+import { getDate } from "../../libs/getDate";
 import "./weatherBlock.css";
 
 type weatherType = {
@@ -17,7 +17,7 @@ type weatherType = {
 };
 
 const WeatherBlock = ({ weather }: { weather: weatherType }) => {
-  const today = getDate(new Date());
+  const today = getDate(new Date(), "long");
   return (
     <div className="weatherBlock">
       <p className="weatherBlock__date">Today, {today}</p>

@@ -2,6 +2,15 @@ import { useState } from "react";
 import "./forecastReport.css";
 import ForecastReportInfo from "../forecastReport-info/ForecastReportInfo";
 
+type dayType = {
+  condition: {
+    icon: string;
+    text: string;
+  };
+  temp_c: number;
+  time: string;
+};
+
 type forecastDayType = {
   date: string;
   day: {
@@ -11,6 +20,7 @@ type forecastDayType = {
     };
     avgtemp_c: number;
   };
+  hour: dayType[];
 };
 
 export interface Iforecast {
@@ -18,7 +28,6 @@ export interface Iforecast {
 }
 
 const ForecastReport = ({ forecast }: { forecast: Iforecast }) => {
-  
   const [open, setOpen] = useState(false);
   return (
     <div className="forecastReport">

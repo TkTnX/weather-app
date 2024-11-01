@@ -31,6 +31,7 @@ function App() {
             },
             avgtemp_c: 0,
           },
+          hour: [],
         },
       ],
     },
@@ -40,6 +41,7 @@ function App() {
   });
   const [openSearch, setOpenSearch] = useState(false);
   const [inputValue, setInputValue] = useState("New York");
+  const [recentSearch, setRecentSearch] = useState<string[]>([]);
 
   const API = import.meta.env.VITE_WEATHER_API_KEY;
   const QUERY = `key=${API}&q=${inputValue}&days=7`;
@@ -75,6 +77,8 @@ function App() {
                 inputValue={inputValue}
                 setInputValue={setInputValue}
                 setOpenSearch={setOpenSearch}
+                setRecentSearch={setRecentSearch}
+                recentSearch={recentSearch}
               />
             ) : (
               <>

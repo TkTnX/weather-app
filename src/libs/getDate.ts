@@ -1,6 +1,6 @@
-export const getDate = (date: Date) => {
+export const getDate = (date: Date, monthLen: "long" | "short") => {
   return date.toLocaleDateString("en-US", {
     day: "numeric",
-    month: "long",
+    month: monthLen,
   });
 };
